@@ -1,0 +1,69 @@
+// Reproducible model controls. Run `node scripts/experiment.js` from the repository.
+// No network, no live arena mutations. Writes public/results/experiments.json.
+import fs from 'node:fs';
+import path from 'node:path';
+import os from 'node:os';
+import crypto from 'node:crypto';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+
+const ROOT=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const OUT=path.join(ROOT,'public/results/experiments.json');
+const SEEDS=20,ROUNDS=800,WINDOW=200,REVERSAL=400;
+const brainFile=path.join(ROOT,'src/brain.js'),circuitFile=path.join(ROOT,'data/circuit.json');
+const brainSource=fs.readFileSync(brainFile,'utf8'),circuitText=fs.readFileSync(circuitFile,'utf8');
+const graph=JSON.parse(circuitText);
+const sha=s=>crypto.createHash('sha256').update(s).digest('hex');
+function rng(seed){let x=seed>>>0||1;return()=>{x^=x<<13;x^=x>>>17;x^=x<<5;return(x>>>0)/4294967296;};}
+const seedList=Array.from({length:SEEDS},(_,i)=>(9122026+Math.imul(i+1,2654435761))>>>0);
+const mean=v=>v.length?v.reduce((a,b)=>a+b,0)/v.length:null;
+function stat(v){const m=mean(v);if(v.length<2)return{mean:m,sd:null,ci95:null,n:v.length};const sd=Math.sqrt(v.reduce((s,x)=>s+(x-m)**2,0)/(v.length-1));return{mean:m,sd,ci95:[m-2.093*sd/Math.sqrt(v.length),m+2.093*sd/Math.sqrt(v.length)],n:v.length};}
+function boot(v){if(!v.length)return null;const r=rng(198713),out=[];for(let k=0;k<10000;k++){let s=0;for(let i=0;i<v.length;i++)s+=v[Math.floor(r()*v.length)];out.push(s/v.length);}out.sort((a,b)=>a-b);return[out[250],out[9750]];}
+function graphSignature(c){const sig={degree:{},strength:{},weightHistogram:{},ntStrength:{}};const nt=new Map(c.nodes.map(n=>[n.bodyId,n.consensusNt]));for(const e of c.edges.filter(e=>e.role==='PN->KC')){for(const [role,id]of[['out',e.source],['in',e.target]]){const k=role+':'+id;sig.degree[k]=(sig.degree[k]??0)+1;sig.strength[k]=(sig.strength[k]??0)+e.synapses;}sig.weightHistogram[e.synapses]=(sig.weightHistogram[e.synapses]??0)+1;const k=e.target+':'+nt.get(e.source);sig.ntStrength[k]=(sig.ntStrength[k]??0)+e.synapses;}return sig;}
+function shuffleCircuit(original,seed){
+ const c=structuredClone(original),indices=c.edges.map((e,i)=>e.role==='PN->KC'?i:-1).filter(i=>i>=0),nt=new Map(c.nodes.map(n=>[n.bodyId,n.consensusNt])),key=e=>`${e.source}:${e.target}`;
+ const pairs=new Set(indices.map(i=>key(c.edges[i]))),oldPairs=new Set(pairs),groups=new Map();
+ for(const i of indices){const e=c.edges[i],k=e.synapses+':'+nt.get(e.source);if(!groups.has(k))groups.set(k,[]);groups.get(k).push(i);}
+ const before=graphSignature(c),r=rng(seed);let attempts=0,accepted=0;
+ while(accepted<indices.length*10&&attempts++<indices.length*100){const a=c.edges[indices[Math.floor(r()*indices.length)]],g=groups.get(a.synapses+':'+nt.get(a.source)),b=c.edges[g[Math.floor(r()*g.length)]];if(a===b||a.source===b.source||a.target===b.target)continue;const ak=a.source+':'+b.target,bk=b.source+':'+a.target;if(pairs.has(ak)||pairs.has(bk))continue;pairs.delete(key(a));pairs.delete(key(b));const t=a.target;a.target=b.target;b.target=t;pairs.add(key(a));pairs.add(key(b));accepted++;}
+ const after=graphSignature(c);for(const category of Object.keys(before)){const keys=new Set([...Object.keys(before[category]),...Object.keys(after[category])]);for(const k of keys)if(before[category][k]!==after[category][k])throw new Error('Shuffle invariant failed '+category+' '+k);}
+ const meta={seed,algorithm:'Bipartite double-edge swaps restricted to equal synapse count and presynaptic consensus neurotransmitter; duplicate pairs rejected',edges:indices.length,attempts,accepted,originalEdgeOverlap:[...pairs].filter(k=>oldPairs.has(k)).length,preserved:['PN out-degree','KC in-degree','PN outgoing synapse strength','KC incoming synapse strength','edge synapse-count histogram','KC incoming strength by neurotransmitter'],unchanged:['all node attributes and stimulus encoding','KC-MBON weights','APL edges','DAN edges','model parameters and learning rule'],invariantsPassed:true,limitations:'One constrained shuffled graph is a diagnostic control. Across-seed confidence intervals do not estimate variation across random graph realizations.'};
+ c.edges.sort((a,b)=>a.source-b.source||a.target-b.target);c.provenance={...c.provenance,artificialControl:meta};return{c,meta};
+}
+function opponentSequence(task,seed){const r=rng(seed^0x19191919);return Array.from({length:ROUNDS},(_,t)=>task==='alternation'?(t+seed%2)%2:Number(r()>=(task==='biased'?0.7:task==='reversal'?(t<REVERSAL?0.85:0.15):0.5)));}
+function run(api,seed,targets,learning){
+ const b=api.createBrain(seed,{learning}),initialGainHash=sha(JSON.stringify(b.gains)),history=[],rows=[];let failure=null;
+ for(let t=0;t<ROUNDS;t++){
+  let d;try{d=api.decideBrain(b,{agent:0,hunter:0,history});}catch(e){failure={round:t+1,message:e.message};break;}
+  const correct=d.action===targets[t],feedback=api.reinforceBrain(b,d,correct?1:-1);
+  history.push({actions:[d.action,targets[t]],winner:correct?0:1,hunter:0,correct});if(history.length>100)history.shift();
+  rows.push({correct:Number(correct),expected:d.probability[targets[t]],active:d.activeKCs,kcHz:mean(d.trace.KC),mbon07:d.trace.MBON07.at(-1),mbon11:d.trace.MBON11.at(-1),zeroMbon:d.trace.MBON07.at(-1)+d.trace.MBON11.at(-1)===0,changed:feedback.changedEdges});
+ }
+ const complete=rows.length===ROUNDS;
+ return{seed,learning,complete,failure,rounds:rows.length,finalWindow:complete?mean(rows.slice(-WINDOW).map(r=>r.correct)):null,expectedFinalWindow:complete?mean(rows.slice(-WINDOW).map(r=>r.expected)):null,firstWindow:mean(rows.slice(0,WINDOW).map(r=>r.correct)),preReversal:complete?mean(rows.slice(REVERSAL-WINDOW,REVERSAL).map(r=>r.correct)):null,first100AfterReversal:complete?mean(rows.slice(REVERSAL,REVERSAL+100).map(r=>r.correct)):null,meanActiveKCs:mean(rows.map(r=>r.active)),meanKcHz:mean(rows.map(r=>r.kcHz)),meanMbon07Hz:mean(rows.map(r=>r.mbon07))/0.160,meanMbon11Hz:mean(rows.map(r=>r.mbon11))/0.160,zeroMbonEpisodes:rows.filter(r=>r.zeroMbon).length,anyChangedEdges:rows.some(r=>r.changed>0),frozenGainsUnchanged:learning?null:sha(JSON.stringify(b.gains))===initialGainHash,trajectory50Rounds:Array.from({length:Math.ceil(rows.length/50)},(_,i)=>mean(rows.slice(i*50,i*50+50).map(r=>r.correct)))};
+}
+
+const scratch=fs.mkdtempSync(path.join(os.tmpdir(),'fly-arena-experiment-'));
+fs.mkdirSync(path.join(scratch,'src'));fs.mkdirSync(path.join(scratch,'data'));fs.writeFileSync(path.join(scratch,'package.json'),'{"type":"module"}');
+fs.writeFileSync(path.join(scratch,'src/brain.js'),brainSource);fs.writeFileSync(path.join(scratch,'data/circuit.json'),circuitText);
+const originalApi=await import(pathToFileURL(path.join(scratch,'src/brain.js')));
+const shuffled=shuffleCircuit(graph,27365),shuffledText=JSON.stringify(shuffled.c),shuffledHash=sha(shuffledText);
+fs.writeFileSync(path.join(scratch,'data/shuffled.json'),shuffledText);
+fs.writeFileSync(path.join(scratch,'src/shuffled.js'),brainSource.replace("'../data/circuit.json'","'../data/shuffled.json'"));
+const shuffledApi=await import(pathToFileURL(path.join(scratch,'src/shuffled.js')));
+const report={schema:1,status:'running',createdAt:new Date().toISOString(),description:'Controlled model experiments: 20 paired seeds per condition, 800 rounds per run; the displayed score is accuracy in rounds 601–800. The seeker sees only completed history. The same opponent sequence and starting neural random state are paired across learning, frozen and wiring conditions.',limitation:'These tests assess an engineered learning rule on a selected connectome. They do not establish living-fly intelligence or an advantage of real wiring. One degree-and-strength-preserving shuffled graph is a diagnostic, not a sample of the full graph-null distribution.',model:originalApi.MODEL,provenance:{brainSha256:sha(brainSource),scriptSha256:sha(fs.readFileSync(fileURLToPath(import.meta.url))),recordedCircuitSha256:sha(circuitText),shuffledCircuitSha256:shuffledHash,nodeVersion:process.version,circuitSource:graph.provenance,parameterSource:'src/brain.js SHA256 above'},parameters:{neuralEpisodeMs:160,dtMs:1,pnBaseHz:8,pnGainHz:65,kcDrive:1,kcThreshold:2.2,kcRefractoryTicks:5,kcLeak:0.9512,mbonThreshold:0.1,mbonRefractoryTicks:8,mbonLeak:0.95,aplLeak:0.9,aplInhibitionGain:0.035,learningRate:0.065,logGainBounds:[-1.5,1.5],logGainRetention:0.9995,policyInverseTemperature:3,policyProbabilityBounds:[0.04,0.96],baselineRetention:0.95},design:{seeds:seedList,rounds:ROUNDS,finalWindow:WINDOW,reversalAt:REVERSAL,completedHistoryLimit:100,roles:'agent0 seeker; opponent hides; no role switches in these isolated tests',taskDefinitions:{biased:'Independent opponent chooses0 with probability0.7; maximum expected accuracy0.7.',alternation:'Opponent alternates its hidden choice; first value determined by seed parity; current target never provided as a cue.',reversal:'Opponent chooses0 with probability0.85 in rounds1–400, then0.15 in rounds401–800; maximum expected accuracy0.85.',random:'Independent fair coin, theoretical expected accuracy0.5; current target never provided as a cue.'},statisticalUnit:'one independent seed, not each serially correlated round',intervals:'95% Student t intervals across20seed-level final-window means, plus10000 paired-seed bootstrap samples for differences',failedRuns:'Report every failure; exclude any incomplete pair from condition summaries, without silently truncating final-window selection.'},shuffle:shuffled.meta,conditions:[],graphComparisons:[],totalFailures:0,scientificNotes:[]};
+fs.mkdirSync(path.dirname(OUT),{recursive:true});
+const labels={biased:'Biased opponent (70/30)',alternation:'Alternating opponent',reversal:'Contingency reversal (85/15 → 15/85)',random:'Fair random opponent'};
+for(const [graphName,api]of [['recorded',originalApi],['shuffled',shuffledApi]]){
+ for(const task of Object.keys(labels)){
+  const pairs=[];
+  for(let i=0;i<SEEDS;i++){const seed=seedList[i],targets=opponentSequence(task,seed),learning=run(api,seed,targets,true),frozen=run(api,seed,targets,false);pairs.push({seed,learning,frozen});if((i+1)%5===0)console.log(JSON.stringify({graph:graphName,task,completedSeeds:i+1}));}
+  const complete=pairs.filter(p=>p.learning.complete&&p.frozen.complete),failed=pairs.flatMap(p=>[p.learning,p.frozen]).filter(r=>!r.complete),diff=complete.map(p=>p.learning.finalWindow-p.frozen.finalWindow);
+  const condition={id:graphName+'-'+task,label:(graphName==='shuffled'?'Shuffled wiring · ':'')+labels[task],graph:graphName,task,runs:complete.length,attemptedPairs:SEEDS,failedRuns:failed.length,failures:failed.map(r=>({seed:r.seed,learning:r.learning,...r.failure})),learning:stat(complete.map(p=>p.learning.finalWindow)),frozen:stat(complete.map(p=>p.frozen.finalWindow)),pairedDifference:{...stat(diff),bootstrapCI95:boot(diff)},learningExpectedScore:stat(complete.map(p=>p.learning.expectedFinalWindow)),learningBeforeReversal:stat(complete.map(p=>p.learning.preReversal)),learningFirst100AfterReversal:stat(complete.map(p=>p.learning.first100AfterReversal)),meanLearningActivity:{activeKCs:mean(complete.map(p=>p.learning.meanActiveKCs)),kcHz:mean(complete.map(p=>p.learning.meanKcHz)),mbon07Hz:mean(complete.map(p=>p.learning.meanMbon07Hz)),mbon11Hz:mean(complete.map(p=>p.learning.meanMbon11Hz))},zeroMbonEpisodes:pairs.reduce((s,p)=>s+p.learning.zeroMbonEpisodes+p.frozen.zeroMbonEpisodes,0),allFrozenGainsUnchanged:pairs.every(p=>p.frozen.frozenGainsUnchanged),runsData:pairs};
+  report.conditions.push(condition);report.totalFailures+=failed.length;fs.writeFileSync(OUT,JSON.stringify(report,null,2));console.log(JSON.stringify({finished:condition.id,learning:condition.learning.mean,frozen:condition.frozen.mean,pairedDifference:condition.pairedDifference.mean,failures:condition.failedRuns}));
+ }
+}
+for(const task of Object.keys(labels)){const real=report.conditions.find(c=>c.id==='recorded-'+task),nullGraph=report.conditions.find(c=>c.id==='shuffled-'+task),differences=[];for(const a of real.runsData){const b=nullGraph.runsData.find(b=>b.seed===a.seed);if(a.learning.complete&&b.learning.complete)differences.push(a.learning.finalWindow-b.learning.finalWindow);}report.graphComparisons.push({task,comparison:'recorded learning minus one shuffled-graph learning',...stat(differences),bootstrapCI95:boot(differences),interpretation:'Conditional on one specific shuffled graph and one fixed artificial PN encoder. Not evidence about the distribution of possible connectomes.'});}
+report.scientificNotes=['Learning versus frozen performance tests the engineered update rule; observed anatomy is shared by both conditions.','Both graphs use the same synthetic game-to-PN mapping. This is not a biological odor task or a recreation of an entire fly.','The fair random condition is a negative control: chance-level performance is expected.','The live arena and third-agent wagering are separate experiments; these controlled seeker tasks do not measure live Mica accuracy.','Reversal speed must be reported with its transient drop, not only the recovered final score. At30seconds per live round,100rounds corresponds to50minutes.','No claim of anatomical superiority is justified solely by learning defeating a frozen model.','MBON episodes with zero output spikes can still have nonzero KC features for the explicitly engineered rate decoder; these are counted rather than discarded.'];
+report.status='complete';report.completedAt=new Date().toISOString();report.totalDecisions=report.conditions.reduce((s,c)=>s+c.runsData.reduce((s,p)=>s+p.learning.rounds+p.frozen.rounds,0),0);fs.writeFileSync(OUT,JSON.stringify(report,null,2));
+console.log(JSON.stringify({report:OUT,status:report.status,totalFailures:report.totalFailures,totalDecisions:report.totalDecisions}));
+fs.rmSync(scratch,{recursive:true,force:true});

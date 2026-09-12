@@ -1,0 +1,32 @@
+{
+  "startedAt": "2026-09-12T06:09:06.558Z",
+  "completedAt": "2026-09-12T06:09:41.034Z",
+  "base": "https://fly-circuit-arena.fly-circuit-arena.workers.dev",
+  "viewers": 50,
+  "messages": 350,
+  "distinctRevisions": 7,
+  "before": {
+    "ok": true,
+    "model": "malecns-mb-v1.0.0",
+    "revision": 200,
+    "phase": "predict",
+    "deadline": 1789193348724,
+    "rounds": 37,
+    "matches": 7,
+    "createdAt": 1789192009438
+  },
+  "after": {
+    "ok": true,
+    "model": "malecns-mb-v1.0.0",
+    "revision": 206,
+    "phase": "think",
+    "deadline": 1789193384730,
+    "rounds": 38,
+    "matches": 7,
+    "createdAt": 1789192009438
+  },
+  "errors": [],
+  "checkedRetainedRounds": 38,
+  "status": "passed",
+  "limitation": "A short same-origin client smoke test, not a geographic latency study or 24-hour availability claim."
+}

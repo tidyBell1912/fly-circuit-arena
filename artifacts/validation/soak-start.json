@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "model": "malecns-mb-v1.0.0",
+  "revision": 257,
+  "phase": "reveal",
+  "deadline": 1789193728786,
+  "rounds": 47,
+  "matches": 9,
+  "createdAt": 1789192009438,
+  "checkedAt": "2026-09-12T06:15:26.784Z",
+  "baselineMatchId": 10
+}
