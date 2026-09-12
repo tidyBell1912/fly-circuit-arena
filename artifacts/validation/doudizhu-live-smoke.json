@@ -1,0 +1,545 @@
+{
+  "startedAt": "2026-09-12T07:27:06.276Z",
+  "base": "https://fly-circuit-arena.fly-circuit-arena.workers.dev",
+  "viewers": 50,
+  "observationSeconds": 35,
+  "status": "passed",
+  "http": {
+    "GET /api/health": 200,
+    "GET /api/state": 200,
+    "GET /api/matches/current": 200,
+    "GET /api/matches": 200,
+    "GET /api/seasons/current": 200,
+    "GET /api/seasons": 200,
+    "POST /api/state": 405,
+    "GET /api/move": 404,
+    "GET /api/rounds?limit=200": 200
+  },
+  "errors": [],
+  "limitation": "Short observer consistency and diagnostic-record smoke test from one machine. It does not measure worldwide latency, continuous availability, biological neural activity or learning improvement.",
+  "before": {
+    "ok": true,
+    "model": "ddz-five-v1.0.0",
+    "namespace": "ddz-five-v1",
+    "schema": 2,
+    "game": "five-player-partnership-doudizhu",
+    "players": 5,
+    "revision": 26,
+    "phase": "play",
+    "phaseStart": 1789198024800,
+    "deadline": 1789198027800,
+    "rounds": 20,
+    "plays": 20,
+    "matches": 0,
+    "matchId": 1,
+    "playedThisMatch": 20,
+    "seasons": 0,
+    "seasonId": 1,
+    "seasonRound": 1,
+    "seasonHand": 1,
+    "scheduling": {
+      "steps": 26,
+      "lateSteps": 0,
+      "maxDelayMs": 1,
+      "totalDelayMs": 2,
+      "firstObservedAt": 1789197939798
+    },
+    "createdAt": 1789197939798
+  },
+  "initial": {
+    "revision": 26,
+    "seasonId": 1,
+    "balances": [
+      10000,
+      10000,
+      10000,
+      10000,
+      10000
+    ],
+    "debts": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "playedThisHand": 20
+  },
+  "checkedCurrentPlays": 20,
+  "sharedRevisions": 13,
+  "lastSharedRevision": "1789197939798:39",
+  "lastSharedFingerprint": "c0f4d3fec92cc5dd3d963becc535235db0f29327278596c61f54d6324127de90",
+  "unsupportedWebSocketMessageCloseCode": 1008,
+  "after": {
+    "ok": true,
+    "model": "ddz-five-v1.0.0",
+    "namespace": "ddz-five-v1",
+    "schema": 2,
+    "game": "five-player-partnership-doudizhu",
+    "players": 5,
+    "revision": 39,
+    "phase": "play",
+    "phaseStart": 1789198063800,
+    "deadline": 1789198066800,
+    "rounds": 33,
+    "plays": 33,
+    "matches": 0,
+    "matchId": 1,
+    "playedThisMatch": 33,
+    "seasons": 0,
+    "seasonId": 1,
+    "seasonRound": 1,
+    "seasonHand": 1,
+    "scheduling": {
+      "steps": 39,
+      "lateSteps": 0,
+      "maxDelayMs": 1,
+      "totalDelayMs": 2,
+      "firstObservedAt": 1789197939798
+    },
+    "createdAt": 1789197939798
+  },
+  "checkedRecentPlays": 33,
+  "completedAt": "2026-09-12T07:27:44.553Z",
+  "messages": 651,
+  "deltaMessages": 600,
+  "maxMessageBytes": 235696,
+  "distinctRevisions": 14,
+  "neuralEpisodesChecked": 18,
+  "neuralSeatsObserved": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "observers": [
+    {
+      "index": 0,
+      "messages": 14,
+      "fullMessages": 2,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 1,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 2,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 3,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 4,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 5,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 6,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 7,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 8,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 9,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 10,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 11,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 12,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 13,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 14,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 15,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 16,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 17,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 18,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 19,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 20,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 21,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 22,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 23,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 24,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 25,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 26,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 27,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 28,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 29,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 30,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 31,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 32,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 33,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 34,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 35,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 36,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 37,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 38,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 39,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 40,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 41,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 42,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 43,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 44,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 45,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 46,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 47,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 48,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    },
+    {
+      "index": 49,
+      "messages": 13,
+      "fullMessages": 1,
+      "deltaMessages": 12,
+      "distinctRevisions": 13
+    }
+  ],
+  "lastNeuralEvidence": [
+    {
+      "digest": "7f29789a75fa59c5429cccb6474974da3612326e22c1c9a744fc47b435182491",
+      "seat": 0,
+      "decisionNumber": 8,
+      "at": 1789198063800,
+      "neuronCount": 984,
+      "anatomyOnly": 17,
+      "spikeEvents": 868,
+      "roles": {
+        "PN": 131,
+        "KC": 850,
+        "MBON": 2,
+        "APL": 1
+      }
+    },
+    {
+      "digest": "7fc4a9426e0e1ac24aa644653cb40138b7a7669ed62c38b83cc224787d0db99e",
+      "seat": 1,
+      "decisionNumber": 7,
+      "at": 1789198051800,
+      "neuronCount": 984,
+      "anatomyOnly": 17,
+      "spikeEvents": 913,
+      "roles": {
+        "PN": 131,
+        "KC": 850,
+        "MBON": 2,
+        "APL": 1
+      }
+    },
+    {
+      "digest": "770fe84e663ffcd79e838baac39667741cba89100ca2dc404eb2568e5c1092c6",
+      "seat": 2,
+      "decisionNumber": 7,
+      "at": 1789198054800,
+      "neuronCount": 984,
+      "anatomyOnly": 17,
+      "spikeEvents": 846,
+      "roles": {
+        "PN": 131,
+        "KC": 850,
+        "MBON": 2,
+        "APL": 1
+      }
+    },
+    {
+      "digest": "afafb29c8c71333eff3bc6c2c7d639e17ef5a3988d859793bf3e05931a5e3db9",
+      "seat": 3,
+      "decisionNumber": 9,
+      "at": 1789198057800,
+      "neuronCount": 984,
+      "anatomyOnly": 17,
+      "spikeEvents": 821,
+      "roles": {
+        "PN": 131,
+        "KC": 850,
+        "MBON": 2,
+        "APL": 1
+      }
+    },
+    {
+      "digest": "e35771ee9e3b08d090c8a49a74542abfbaeb55c9f42634a2ed3fbf08a1ac085b",
+      "seat": 4,
+      "decisionNumber": 8,
+      "at": 1789198060800,
+      "neuronCount": 984,
+      "anatomyOnly": 17,
+      "spikeEvents": 813,
+      "roles": {
+        "PN": 131,
+        "KC": 850,
+        "MBON": 2,
+        "APL": 1
+      }
+    }
+  ]
+}

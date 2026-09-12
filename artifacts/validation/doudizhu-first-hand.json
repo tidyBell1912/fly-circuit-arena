@@ -1,0 +1,2496 @@
+{
+  "checkedAt": "2026-09-12T07:34:36.266Z",
+  "base": "https://fly-circuit-arena.fly-circuit-arena.workers.dev",
+  "verifiedAgainstCommit": "58727ab",
+  "status": "passed",
+  "http": {
+    "/api/health": 200,
+    "/api/matches": 200,
+    "/api/matches/1": 200,
+    "/api/state": 200
+  },
+  "checks": {
+    "archivedAndListed": true,
+    "biddingCanonical": true,
+    "legalPatternsAndResponses": true,
+    "turnsAndFourPassReset": true,
+    "canonicalPhysicalCards": true,
+    "zeroDuplicateCards": true,
+    "canonical108CardConservation": true,
+    "winnerInferredEmpty": true,
+    "firstEmptyHandStopsGame": true,
+    "winnerTeamAndRevealedIdentity": true,
+    "multiplierCanonical": true,
+    "exactTransfers": true,
+    "zeroSumSettlement": true,
+    "fiveFeedbackRecords": true,
+    "archiveStableAcrossReads": true
+  },
+  "limitations": [
+    "The public archive does not contain the original per-player deal or terminal hands. Remaining card counts are inferred from the declared 20/28-card allocation and each seat's recorded plays; they are not a captured terminal hand snapshot.",
+    "Unique physical cards and canonical-deck coverage do not independently establish the original ownership of every unplayed card. Initial ownership and policy information boundaries are additionally covered by local implementation tests.",
+    "This is one observed production hand, not evidence that learning improves win rate or that the new arena has completed a 24-hour availability test."
+  ],
+  "health": {
+    "ok": true,
+    "model": "ddz-five-v1.0.0",
+    "namespace": "ddz-five-v1",
+    "schema": 2,
+    "game": "five-player-partnership-doudizhu",
+    "players": 5,
+    "revision": 170,
+    "phase": "play",
+    "phaseStart": 1789198474804,
+    "deadline": 1789198477804,
+    "rounds": 160,
+    "plays": 160,
+    "matches": 1,
+    "matchId": 2,
+    "playedThisMatch": 81,
+    "seasons": 0,
+    "seasonId": 1,
+    "seasonRound": 1,
+    "seasonHand": 2,
+    "scheduling": {
+      "steps": 170,
+      "lateSteps": 0,
+      "maxDelayMs": 1,
+      "totalDelayMs": 6,
+      "firstObservedAt": 1789197939798
+    },
+    "createdAt": 1789197939798
+  },
+  "currentProgress": {
+    "revision": 170,
+    "matchId": 2,
+    "phase": "play",
+    "handCounts": [
+      7,
+      4,
+      2,
+      5,
+      13
+    ],
+    "played": 81
+  },
+  "summary": {
+    "handId": 1,
+    "startedAt": "2026-09-12T07:25:39.798Z",
+    "completedAt": "2026-09-12T07:30:01.800Z",
+    "durationSeconds": 262.002,
+    "plays": 79,
+    "nonPassPlays": 26,
+    "passes": 53,
+    "clearedTricks": 9,
+    "patterns": {
+      "airplane-pair": 2,
+      "bomb": 2,
+      "triple-pair": 1,
+      "pair": 8,
+      "straight": 1,
+      "triple-single": 1,
+      "single": 11
+    },
+    "maximumIntervalDelayMs": 1,
+    "winnerSeat": 1,
+    "winnerName": "Cobalt",
+    "winningTeam": "farmers",
+    "winningSeats": [
+      1,
+      2,
+      4
+    ],
+    "winningNames": [
+      "Cobalt",
+      "Mica",
+      "Jade"
+    ],
+    "landlord": 3,
+    "partner": 0,
+    "bid": 2,
+    "bombs": 2,
+    "multiplier": 4,
+    "baseUnit": 1600,
+    "initialHandCounts": [
+      20,
+      20,
+      20,
+      28,
+      20
+    ],
+    "recordedCardsPlayedBySeat": [
+      19,
+      20,
+      14,
+      19,
+      5
+    ],
+    "inferredRemainingHandCounts": [
+      1,
+      0,
+      6,
+      9,
+      15
+    ],
+    "uniquePhysicalCardsPlayed": 77,
+    "canonicalCardsNotPlayed": 31,
+    "pointsDelta": [
+      -4800,
+      3200,
+      3200,
+      -4800,
+      3200
+    ],
+    "balancesAfter": [
+      5200,
+      13200,
+      13200,
+      5200,
+      13200
+    ],
+    "totalBeansBefore": 50000,
+    "totalBeansAfter": 50000
+  },
+  "archiveSHA256": "47b2ecab3d8fba15a96cbc10d8ec54887f79262d2c7c05f78729a5531cccd20c",
+  "archive": {
+    "id": 1,
+    "startedAt": 1789197939798,
+    "completedAt": 1789198201800,
+    "landlord": 3,
+    "bid": 2,
+    "bids": [
+      {
+        "seat": 0,
+        "bid": 0,
+        "at": 1789197948799,
+        "probability": [
+          0.6515175867033821,
+          0.3484824132966179
+        ],
+        "activeKCs": 39,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2
+      },
+      {
+        "seat": 1,
+        "bid": 0,
+        "at": 1789197951799,
+        "probability": [
+          0.8531567545111907,
+          0.14684324548880934
+        ],
+        "activeKCs": 35,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2
+      },
+      {
+        "seat": 2,
+        "bid": 0,
+        "at": 1789197954799,
+        "probability": [
+          0.847144257660617,
+          0.15285574233938304
+        ],
+        "activeKCs": 40,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2
+      },
+      {
+        "seat": 3,
+        "bid": 2,
+        "at": 1789197957799,
+        "probability": [
+          0.8016117227862571,
+          0.19838827721374286
+        ],
+        "activeKCs": 19,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2
+      },
+      {
+        "seat": 4,
+        "bid": 0,
+        "at": 1789197960799,
+        "probability": [
+          0.6765615694256779,
+          0.3234384305743221
+        ],
+        "activeKCs": 17,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2
+      }
+    ],
+    "plays": [
+      {
+        "id": "1-1",
+        "matchId": 1,
+        "number": 1,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [
+          4,
+          6,
+          59,
+          8,
+          62,
+          63,
+          12,
+          13,
+          15,
+          17,
+          72,
+          20,
+          77,
+          90,
+          92
+        ],
+        "pattern": {
+          "type": "airplane-pair",
+          "size": 15,
+          "mainRank": 6,
+          "chainLength": 3,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789197963799,
+        "probability": [
+          0.7106001638280892,
+          0.2893998361719108
+        ],
+        "activeKCs": 55,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-2",
+        "matchId": 1,
+        "number": 2,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789197966799,
+        "probability": [
+          0.701705446837814,
+          0.298294553162186
+        ],
+        "activeKCs": 11,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-3",
+        "matchId": 1,
+        "number": 3,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789197969799,
+        "probability": [
+          0.7294930599653953,
+          0.27050694003460474
+        ],
+        "activeKCs": 29,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-4",
+        "matchId": 1,
+        "number": 4,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789197972799,
+        "probability": [
+          0.6115124184191848,
+          0.3884875815808152
+        ],
+        "activeKCs": 42,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-5",
+        "matchId": 1,
+        "number": 5,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [
+          21,
+          23,
+          74,
+          75
+        ],
+        "pattern": {
+          "type": "bomb",
+          "size": 4,
+          "mainRank": 8,
+          "chainLength": 1,
+          "bomb": true,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789197975799,
+        "probability": [
+          0.816190179341258,
+          0.18380982065874196
+        ],
+        "activeKCs": 34,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-6",
+        "matchId": 1,
+        "number": 6,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789197980800,
+        "probability": [
+          0.6863209238986817,
+          0.3136790761013183
+        ],
+        "activeKCs": 28,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-7",
+        "matchId": 1,
+        "number": 7,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789197983800,
+        "probability": [
+          0.8340629339838587,
+          0.16593706601614133
+        ],
+        "activeKCs": 27,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-8",
+        "matchId": 1,
+        "number": 8,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789197986800,
+        "probability": [
+          0.8868569121512132,
+          0.1131430878487868
+        ],
+        "activeKCs": 19,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-9",
+        "matchId": 1,
+        "number": 9,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789197989800,
+        "probability": [
+          0.6057013739895514,
+          0.3942986260104486
+        ],
+        "activeKCs": 67,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0",
+        "cleared": true
+      },
+      {
+        "id": "1-10",
+        "matchId": 1,
+        "number": 10,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [
+          9,
+          11,
+          34,
+          87,
+          88
+        ],
+        "pattern": {
+          "type": "triple-pair",
+          "size": 5,
+          "mainRank": 11,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789197992800,
+        "probability": [
+          0.8466824699010876,
+          0.15331753009891236
+        ],
+        "activeKCs": 25,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-11",
+        "matchId": 1,
+        "number": 11,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789197995800,
+        "probability": [
+          0.6261288751593955,
+          0.3738711248406045
+        ],
+        "activeKCs": 45,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-12",
+        "matchId": 1,
+        "number": 12,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789197998800,
+        "probability": [
+          0.8964390516995926,
+          0.10356094830040741
+        ],
+        "activeKCs": 29,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-13",
+        "matchId": 1,
+        "number": 13,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198001800,
+        "probability": [
+          0.8131323668290616,
+          0.18686763317093835
+        ],
+        "activeKCs": 18,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-14",
+        "matchId": 1,
+        "number": 14,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198004800,
+        "probability": [
+          0.8226648181435906,
+          0.1773351818564094
+        ],
+        "activeKCs": 25,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0",
+        "cleared": true
+      },
+      {
+        "id": "1-15",
+        "matchId": 1,
+        "number": 15,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [
+          19,
+          71
+        ],
+        "pattern": {
+          "type": "pair",
+          "size": 2,
+          "mainRank": 7,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198007800,
+        "probability": [
+          0.7060760323708773,
+          0.29392396762912265
+        ],
+        "activeKCs": 21,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-16",
+        "matchId": 1,
+        "number": 16,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198010800,
+        "probability": [
+          0.7555854155200801,
+          0.24441458447991993
+        ],
+        "activeKCs": 29,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-17",
+        "matchId": 1,
+        "number": 17,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [
+          28,
+          29
+        ],
+        "pattern": {
+          "type": "pair",
+          "size": 2,
+          "mainRank": 10,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198013800,
+        "probability": [
+          0.7717375797426809,
+          0.22826242025731913
+        ],
+        "activeKCs": 27,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-18",
+        "matchId": 1,
+        "number": 18,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [
+          1,
+          2,
+          54,
+          55
+        ],
+        "pattern": {
+          "type": "bomb",
+          "size": 4,
+          "mainRank": 3,
+          "chainLength": 1,
+          "bomb": true,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198016800,
+        "probability": [
+          0.7575844357473105,
+          0.2424155642526895
+        ],
+        "activeKCs": 42,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0",
+        "identityRevealed": 0
+      },
+      {
+        "id": "1-19",
+        "matchId": 1,
+        "number": 19,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198021800,
+        "probability": [
+          0.7409812039553466,
+          0.2590187960446534
+        ],
+        "activeKCs": 26,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-20",
+        "matchId": 1,
+        "number": 20,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198024800,
+        "probability": [
+          0.6891664091114741,
+          0.3108335908885259
+        ],
+        "activeKCs": 17,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-21",
+        "matchId": 1,
+        "number": 21,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198027800,
+        "probability": [
+          0.5312562937490212,
+          0.46874370625097883
+        ],
+        "activeKCs": 35,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-22",
+        "matchId": 1,
+        "number": 22,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198030800,
+        "probability": [
+          0.528615853614531,
+          0.471384146385469
+        ],
+        "activeKCs": 18,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0",
+        "cleared": true
+      },
+      {
+        "id": "1-23",
+        "matchId": 1,
+        "number": 23,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [
+          73,
+          76,
+          78,
+          83,
+          86,
+          39,
+          42,
+          45
+        ],
+        "pattern": {
+          "type": "straight",
+          "size": 8,
+          "mainRank": 14,
+          "chainLength": 8,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198033800,
+        "probability": [
+          0.8466067957399187,
+          0.1533932042600813
+        ],
+        "activeKCs": 15,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-24",
+        "matchId": 1,
+        "number": 24,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198036800,
+        "probability": [
+          0.7240040893025489,
+          0.2759959106974511
+        ],
+        "activeKCs": 39,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-25",
+        "matchId": 1,
+        "number": 25,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198039800,
+        "probability": [
+          0.6675957094018498,
+          0.33240429059815024
+        ],
+        "activeKCs": 32,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-26",
+        "matchId": 1,
+        "number": 26,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198042800,
+        "probability": [
+          0.7534999451851249,
+          0.24650005481487514
+        ],
+        "activeKCs": 7,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-27",
+        "matchId": 1,
+        "number": 27,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198045800,
+        "probability": [
+          0.6116904767381918,
+          0.38830952326180823
+        ],
+        "activeKCs": 57,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0",
+        "cleared": true
+      },
+      {
+        "id": "1-28",
+        "matchId": 1,
+        "number": 28,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [
+          58,
+          46,
+          100,
+          101
+        ],
+        "pattern": {
+          "type": "triple-single",
+          "size": 4,
+          "mainRank": 14,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198048800,
+        "probability": [
+          0.622666383617164,
+          0.377333616382836
+        ],
+        "activeKCs": 36,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-29",
+        "matchId": 1,
+        "number": 29,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198051800,
+        "probability": [
+          0.6171685770963775,
+          0.3828314229036225
+        ],
+        "activeKCs": 68,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-30",
+        "matchId": 1,
+        "number": 30,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198054800,
+        "probability": [
+          0.6467152064826869,
+          0.3532847935173131
+        ],
+        "activeKCs": 47,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-31",
+        "matchId": 1,
+        "number": 31,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198057800,
+        "probability": [
+          0.872242833001982,
+          0.12775716699801798
+        ],
+        "activeKCs": 10,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-32",
+        "matchId": 1,
+        "number": 32,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198060800,
+        "probability": [
+          0.5541917232395643,
+          0.44580827676043566
+        ],
+        "activeKCs": 42,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0",
+        "cleared": true
+      },
+      {
+        "id": "1-33",
+        "matchId": 1,
+        "number": 33,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [
+          80
+        ],
+        "pattern": {
+          "type": "single",
+          "size": 1,
+          "mainRank": 9,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198063800,
+        "probability": [
+          0.8521008120374812,
+          0.14789918796251877
+        ],
+        "activeKCs": 20,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-34",
+        "matchId": 1,
+        "number": 34,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [
+          82
+        ],
+        "pattern": {
+          "type": "single",
+          "size": 1,
+          "mainRank": 10,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198066800,
+        "probability": [
+          0.6329230347947531,
+          0.3670769652052469
+        ],
+        "activeKCs": 39,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-35",
+        "matchId": 1,
+        "number": 35,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198069800,
+        "probability": [
+          0.7202582013895151,
+          0.27974179861048487
+        ],
+        "activeKCs": 20,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-36",
+        "matchId": 1,
+        "number": 36,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198072800,
+        "probability": [
+          0.3693810066994584,
+          0.6306189933005416
+        ],
+        "activeKCs": 12,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-37",
+        "matchId": 1,
+        "number": 37,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [
+          38
+        ],
+        "pattern": {
+          "type": "single",
+          "size": 1,
+          "mainRank": 12,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198075800,
+        "probability": [
+          0.47097520439600554,
+          0.5290247956039944
+        ],
+        "activeKCs": 67,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-38",
+        "matchId": 1,
+        "number": 38,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [
+          104
+        ],
+        "pattern": {
+          "type": "single",
+          "size": 1,
+          "mainRank": 15,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198078800,
+        "probability": [
+          0.5977525974414277,
+          0.4022474025585723
+        ],
+        "activeKCs": 47,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-39",
+        "matchId": 1,
+        "number": 39,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198081800,
+        "probability": [
+          0.7526732976767283,
+          0.2473267023232717
+        ],
+        "activeKCs": 33,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-40",
+        "matchId": 1,
+        "number": 40,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [
+          107
+        ],
+        "pattern": {
+          "type": "single",
+          "size": 1,
+          "mainRank": 17,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198084800,
+        "probability": [
+          0.40551677583689566,
+          0.5944832241631044
+        ],
+        "activeKCs": 79,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-41",
+        "matchId": 1,
+        "number": 41,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198087800,
+        "probability": [
+          0.5390672000807117,
+          0.46093279991928826
+        ],
+        "activeKCs": 14,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-42",
+        "matchId": 1,
+        "number": 42,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198090800,
+        "probability": [
+          0.5335595459527734,
+          0.46644045404722656
+        ],
+        "activeKCs": 42,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-43",
+        "matchId": 1,
+        "number": 43,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198093800,
+        "probability": [
+          0.5367211676732337,
+          0.46327883232676625
+        ],
+        "activeKCs": 20,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-44",
+        "matchId": 1,
+        "number": 44,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198096800,
+        "probability": [
+          0.7698360605828269,
+          0.23016393941717306
+        ],
+        "activeKCs": 23,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0",
+        "cleared": true
+      },
+      {
+        "id": "1-45",
+        "matchId": 1,
+        "number": 45,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [
+          0,
+          3
+        ],
+        "pattern": {
+          "type": "pair",
+          "size": 2,
+          "mainRank": 3,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198099800,
+        "probability": [
+          0.7993715205867995,
+          0.2006284794132005
+        ],
+        "activeKCs": 13,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-46",
+        "matchId": 1,
+        "number": 46,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198102800,
+        "probability": [
+          0.39708557773393016,
+          0.6029144222660698
+        ],
+        "activeKCs": 83,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-47",
+        "matchId": 1,
+        "number": 47,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [
+          66,
+          68
+        ],
+        "pattern": {
+          "type": "pair",
+          "size": 2,
+          "mainRank": 6,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198105800,
+        "probability": [
+          0.69654392964836,
+          0.30345607035164
+        ],
+        "activeKCs": 30,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-48",
+        "matchId": 1,
+        "number": 48,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198108800,
+        "probability": [
+          0.6322061673400041,
+          0.3677938326599959
+        ],
+        "activeKCs": 25,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-49",
+        "matchId": 1,
+        "number": 49,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [
+          18,
+          70
+        ],
+        "pattern": {
+          "type": "pair",
+          "size": 2,
+          "mainRank": 7,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198111800,
+        "probability": [
+          0.7506059179425257,
+          0.24939408205747426
+        ],
+        "activeKCs": 42,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-50",
+        "matchId": 1,
+        "number": 50,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198114800,
+        "probability": [
+          0.6931094422763326,
+          0.30689055772366736
+        ],
+        "activeKCs": 20,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-51",
+        "matchId": 1,
+        "number": 51,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [
+          40,
+          95
+        ],
+        "pattern": {
+          "type": "pair",
+          "size": 2,
+          "mainRank": 13,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198117800,
+        "probability": [
+          0.4917552795593845,
+          0.5082447204406155
+        ],
+        "activeKCs": 36,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-52",
+        "matchId": 1,
+        "number": 52,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198120800,
+        "probability": [
+          0.490977526270804,
+          0.509022473729196
+        ],
+        "activeKCs": 54,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-53",
+        "matchId": 1,
+        "number": 53,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198123800,
+        "probability": [
+          0.4499692693036568,
+          0.5500307306963432
+        ],
+        "activeKCs": 60,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-54",
+        "matchId": 1,
+        "number": 54,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [
+          48,
+          51
+        ],
+        "pattern": {
+          "type": "pair",
+          "size": 2,
+          "mainRank": 15,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198126800,
+        "probability": [
+          0.5039992434083744,
+          0.49600075659162557
+        ],
+        "activeKCs": 66,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-55",
+        "matchId": 1,
+        "number": 55,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198129800,
+        "probability": [
+          0.811649131202961,
+          0.188350868797039
+        ],
+        "activeKCs": 12,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-56",
+        "matchId": 1,
+        "number": 56,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198132800,
+        "probability": [
+          0.6816214744123923,
+          0.3183785255876077
+        ],
+        "activeKCs": 39,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-57",
+        "matchId": 1,
+        "number": 57,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198135800,
+        "probability": [
+          0.6259249021374697,
+          0.37407509786253035
+        ],
+        "activeKCs": 24,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-58",
+        "matchId": 1,
+        "number": 58,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198138800,
+        "probability": [
+          0.5780832255921069,
+          0.4219167744078931
+        ],
+        "activeKCs": 49,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0",
+        "cleared": true
+      },
+      {
+        "id": "1-59",
+        "matchId": 1,
+        "number": 59,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [
+          10,
+          65,
+          14,
+          67,
+          36,
+          37,
+          91,
+          41,
+          43,
+          96
+        ],
+        "pattern": {
+          "type": "airplane-pair",
+          "size": 10,
+          "mainRank": 13,
+          "chainLength": 2,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198141800,
+        "probability": [
+          0.4627574644123716,
+          0.5372425355876285
+        ],
+        "activeKCs": 78,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-60",
+        "matchId": 1,
+        "number": 60,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198144800,
+        "probability": [
+          0.6888947801119331,
+          0.31110521988806694
+        ],
+        "activeKCs": 24,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-61",
+        "matchId": 1,
+        "number": 61,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198147800,
+        "probability": [
+          0.6965888663688176,
+          0.30341113363118244
+        ],
+        "activeKCs": 22,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-62",
+        "matchId": 1,
+        "number": 62,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198150800,
+        "probability": [
+          0.6489529163881032,
+          0.35104708361189685
+        ],
+        "activeKCs": 36,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-63",
+        "matchId": 1,
+        "number": 63,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198153800,
+        "probability": [
+          0.4651701360741084,
+          0.5348298639258916
+        ],
+        "activeKCs": 68,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0",
+        "cleared": true
+      },
+      {
+        "id": "1-64",
+        "matchId": 1,
+        "number": 64,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [
+          61
+        ],
+        "pattern": {
+          "type": "single",
+          "size": 1,
+          "mainRank": 4,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198156800,
+        "probability": [
+          0.7764367968958531,
+          0.2235632031041469
+        ],
+        "activeKCs": 26,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-65",
+        "matchId": 1,
+        "number": 65,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198159800,
+        "probability": [
+          0.8099471873886107,
+          0.1900528126113893
+        ],
+        "activeKCs": 18,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-66",
+        "matchId": 1,
+        "number": 66,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [
+          69
+        ],
+        "pattern": {
+          "type": "single",
+          "size": 1,
+          "mainRank": 6,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198162800,
+        "probability": [
+          0.7173223186786459,
+          0.28267768132135407
+        ],
+        "activeKCs": 32,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-67",
+        "matchId": 1,
+        "number": 67,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198165800,
+        "probability": [
+          0.5650244225418998,
+          0.4349755774581002
+        ],
+        "activeKCs": 40,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-68",
+        "matchId": 1,
+        "number": 68,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198168800,
+        "probability": [
+          0.5066450047678676,
+          0.49335499523213244
+        ],
+        "activeKCs": 41,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-69",
+        "matchId": 1,
+        "number": 69,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [
+          81
+        ],
+        "pattern": {
+          "type": "single",
+          "size": 1,
+          "mainRank": 9,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198171800,
+        "probability": [
+          0.6054573973484116,
+          0.39454260265158836
+        ],
+        "activeKCs": 36,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-70",
+        "matchId": 1,
+        "number": 70,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198174800,
+        "probability": [
+          0.670336040403474,
+          0.32966395959652595
+        ],
+        "activeKCs": 18,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-71",
+        "matchId": 1,
+        "number": 71,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [
+          30
+        ],
+        "pattern": {
+          "type": "single",
+          "size": 1,
+          "mainRank": 10,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198177800,
+        "probability": [
+          0.5347575685895002,
+          0.4652424314104998
+        ],
+        "activeKCs": 37,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-72",
+        "matchId": 1,
+        "number": 72,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198180800,
+        "probability": [
+          0.47179501907706334,
+          0.5282049809229367
+        ],
+        "activeKCs": 35,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-73",
+        "matchId": 1,
+        "number": 73,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [
+          93
+        ],
+        "pattern": {
+          "type": "single",
+          "size": 1,
+          "mainRank": 12,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198183800,
+        "probability": [
+          0.4107382902977808,
+          0.5892617097022192
+        ],
+        "activeKCs": 62,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-74",
+        "matchId": 1,
+        "number": 74,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [
+          103
+        ],
+        "pattern": {
+          "type": "single",
+          "size": 1,
+          "mainRank": 15,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198186800,
+        "probability": [
+          0.5755722988617229,
+          0.4244277011382771
+        ],
+        "activeKCs": 51,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 1,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-75",
+        "matchId": 1,
+        "number": 75,
+        "kind": "play",
+        "seat": 2,
+        "playerId": 2,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198189800,
+        "probability": [
+          0.4863754889340987,
+          0.5136245110659012
+        ],
+        "activeKCs": 26,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-76",
+        "matchId": 1,
+        "number": 76,
+        "kind": "play",
+        "seat": 3,
+        "playerId": 3,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198192800,
+        "probability": [
+          0.702353240505415,
+          0.29764675949458497
+        ],
+        "activeKCs": 28,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-77",
+        "matchId": 1,
+        "number": 77,
+        "kind": "play",
+        "seat": 4,
+        "playerId": 4,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198195800,
+        "probability": [
+          0.5455489187825858,
+          0.4544510812174142
+        ],
+        "activeKCs": 53,
+        "simulatedMs": 160,
+        "forced": false,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 2,
+        "model": "ddz-five-v1.0.0"
+      },
+      {
+        "id": "1-78",
+        "matchId": 1,
+        "number": 78,
+        "kind": "play",
+        "seat": 0,
+        "playerId": 0,
+        "cards": [],
+        "pattern": null,
+        "pass": true,
+        "at": 1789198198800,
+        "probability": [
+          0.4729704812504332,
+          0.5270295187495668
+        ],
+        "activeKCs": 34,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0",
+        "cleared": true
+      },
+      {
+        "id": "1-79",
+        "matchId": 1,
+        "number": 79,
+        "kind": "play",
+        "seat": 1,
+        "playerId": 1,
+        "cards": [
+          32,
+          33
+        ],
+        "pattern": {
+          "type": "pair",
+          "size": 2,
+          "mainRank": 11,
+          "chainLength": 1,
+          "bomb": false,
+          "rocket": false
+        },
+        "pass": false,
+        "at": 1789198201800,
+        "probability": [
+          0.6292503904470139,
+          0.3707496095529861
+        ],
+        "activeKCs": 38,
+        "simulatedMs": 160,
+        "forced": true,
+        "silent": false,
+        "candidateIndex": 0,
+        "candidateCount": 1,
+        "model": "ddz-five-v1.0.0"
+      }
+    ],
+    "winner": 1,
+    "winningTeam": "farmers",
+    "winningSeats": [
+      1,
+      2,
+      4
+    ],
+    "bombs": 2,
+    "multiplier": 4,
+    "partnerRevealed": true,
+    "identityRevealedAt": 1789198016800,
+    "pointsDelta": [
+      -4800,
+      3200,
+      3200,
+      -4800,
+      3200
+    ],
+    "balancesAfter": [
+      5200,
+      13200,
+      13200,
+      5200,
+      13200
+    ],
+    "baseUnit": 1600,
+    "redeals": 0,
+    "seasonId": 1,
+    "seasonRound": 1,
+    "seasonHand": 1,
+    "model": "ddz-five-v1.0.0",
+    "transfers": [
+      {
+        "from": 0,
+        "to": 1,
+        "amount": 1600
+      },
+      {
+        "from": 0,
+        "to": 2,
+        "amount": 1600
+      },
+      {
+        "from": 0,
+        "to": 4,
+        "amount": 1600
+      },
+      {
+        "from": 3,
+        "to": 1,
+        "amount": 1600
+      },
+      {
+        "from": 3,
+        "to": 2,
+        "amount": 1600
+      },
+      {
+        "from": 3,
+        "to": 4,
+        "amount": 1600
+      }
+    ],
+    "feedback": [
+      {
+        "source": "match",
+        "reward": -1,
+        "delta": -0.975,
+        "expected": 0,
+        "changedEdges": 258,
+        "meanChange": 0.006795,
+        "decisionsReinforced": 2,
+        "learning": true,
+        "modelReward": -1,
+        "label": "Engineered team-outcome learning signal; not measured dopamine",
+        "at": 1789198201800,
+        "team": "lost",
+        "beans": -4800
+      },
+      {
+        "source": "match",
+        "reward": 1,
+        "delta": 0.8830333333333332,
+        "expected": 0,
+        "changedEdges": 1338,
+        "meanChange": 0.007200833333333333,
+        "decisionsReinforced": 6,
+        "learning": true,
+        "modelReward": 1,
+        "label": "Engineered team-outcome learning signal; not measured dopamine",
+        "at": 1789198201800,
+        "team": "won",
+        "beans": 3200
+      },
+      {
+        "source": "match",
+        "reward": 1,
+        "delta": 0.90488,
+        "expected": 0,
+        "changedEdges": 970,
+        "meanChange": 0.0033824,
+        "decisionsReinforced": 5,
+        "learning": true,
+        "modelReward": 1,
+        "label": "Engineered team-outcome learning signal; not measured dopamine",
+        "at": 1789198201800,
+        "team": "won",
+        "beans": 3200
+      },
+      {
+        "source": "match",
+        "reward": -1,
+        "delta": -0.90488,
+        "expected": 0,
+        "changedEdges": 1182,
+        "meanChange": 0.0068176,
+        "decisionsReinforced": 5,
+        "learning": true,
+        "modelReward": -1,
+        "label": "Engineered team-outcome learning signal; not measured dopamine",
+        "at": 1789198201800,
+        "team": "lost",
+        "beans": -4800
+      },
+      {
+        "source": "match",
+        "reward": 1,
+        "delta": 0.8830333333333332,
+        "expected": 0,
+        "changedEdges": 1010,
+        "meanChange": 0.0052905,
+        "decisionsReinforced": 6,
+        "learning": true,
+        "modelReward": 1,
+        "label": "Engineered team-outcome learning signal; not measured dopamine",
+        "at": 1789198201800,
+        "team": "won",
+        "beans": 3200
+      }
+    ],
+    "partner": 0,
+    "identityCard": 2
+  },
+  "completedAt": "2026-09-12T07:34:36.977Z"
+}
