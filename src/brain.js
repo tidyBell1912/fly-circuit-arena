@@ -2,6 +2,8 @@ import circuit from '../data/circuit.json' with { type: 'json' };
 
 const pn = circuit.nodes.filter(n => n.role === 'PN');
 const kc = circuit.nodes.filter(n => n.role === 'KC');
+const aplNode = circuit.nodes.find(n => n.role === 'APL');
+const anatomicalDan = circuit.nodes.filter(n => n.role === 'DAN');
 const pIndex = new Map(pn.map((n, i) => [n.bodyId, i]));
 const kIndex = new Map(kc.map((n, i) => [n.bodyId, i]));
 const outputs = [18603, 10704];
@@ -66,6 +68,7 @@ function cueChannels(context) {
 }
 
 export function decideBrain(brain, context = {}, options = {}) {
+  const recordNeurons = options.recordNeurons === true;
   const cues = cueChannels(context);
   const rates = pn.map((node, i) => {
     const channel = (Math.imul(node.bodyId, 2654435761) >>> 0) % cues.length;
@@ -75,6 +78,9 @@ export function decideBrain(brain, context = {}, options = {}) {
   const v = new Float64Array(n), counts = new Uint16Array(n), refractory = new Uint8Array(n);
   const current = new Float64Array(n), mV = [0, 0], mCounts = [0, 0], mRef = [0, 0];
   const trace = { PN: [], KC: [], MBON07: [], MBON11: [], APL: [], hotIds: [] };
+  // Passive instrumentation only: no random draws or feedback to the solver.
+  const pnCounts = recordNeurons ? new Uint16Array(pn.length) : null;
+  const spikeEvents = recordNeurons ? [] : null, aplSamples = recordNeurons ? [] : null;
   let apl = 0, binPn = 0, binKc = 0;
   const gains = brain.gains.map((g, a) => Float64Array.from(g, (x, i) => base[a][i] * Math.exp(x)));
   for (let t = 0; t < 160; t++) {
@@ -82,6 +88,7 @@ export function decideBrain(brain, context = {}, options = {}) {
     for (let p = 0; p < pn.length; p++) {
       if (random(brain) < rates[p] / 1000) {
         binPn++;
+        if (recordNeurons) { pnCounts[p]++; spikeEvents.push([t, pn[p].bodyId]); }
         for (const [k, w] of pnTargets[p]) current[k] += w * (options.drive ?? 1.0);
       }
     }
@@ -92,16 +99,21 @@ export function decideBrain(brain, context = {}, options = {}) {
       v[k] = Math.max(0, v[k] * 0.9512 + current[k] - apl * aplOut[k] * 0.035);
       if (v[k] >= (options.threshold ?? 2.2)) {
         v[k] = 0; refractory[k] = 5; counts[k]++; binKc++;
+        if (recordNeurons) spikeEvents.push([t, kc[k].bodyId]);
         weightedActivity += aplIn[k];
         outputCurrent[0] += gains[0][k] / n * 18;
         outputCurrent[1] += gains[1][k] / n * 18;
       }
     }
     apl = apl * 0.9 + weightedActivity * 0.1;
+    if (recordNeurons) aplSamples.push([t, Number(apl.toFixed(6))]);
     for (let a = 0; a < 2; a++) {
       if (mRef[a]) { mRef[a]--; continue; }
       mV[a] = mV[a] * 0.95 + outputCurrent[a];
-      if (mV[a] >= 0.1) { mCounts[a]++; mV[a] = 0; mRef[a] = 8; }
+      if (mV[a] >= 0.1) {
+        mCounts[a]++; mV[a] = 0; mRef[a] = 8;
+        if (recordNeurons) spikeEvents.push([t, outputs[a]]);
+      }
     }
     if (t % 10 === 9) {
       trace.PN.push(Math.round(binPn * 100 / pn.length));
@@ -110,8 +122,26 @@ export function decideBrain(brain, context = {}, options = {}) {
       trace.APL.push(Number(apl.toFixed(4))); binPn = 0; binKc = 0;
     }
   }
+  // Membrane variables are dimensionless modeled values, not measured millivolts.
+  // APL is a continuous inhibition state in this solver, so it has no spike count.
+  const neural = recordNeurons ? {
+    schema: 1, durationMs: 160, dtMs: 1, voltageUnits: 'dimensionless model state', voltagePrecision: 1e-6,
+    columns: ['bodyId', 'role', 'spikeCount', 'rateHz', 'finalVoltage', 'finalActivity'],
+    neurons: [
+      ...pn.map((node, i) => [node.bodyId, 'PN', pnCounts[i], pnCounts[i] * 6.25, null, null]),
+      ...kc.map((node, i) => [node.bodyId, 'KC', counts[i], counts[i] * 6.25, Number(v[i].toFixed(6)), null]),
+      ...outputs.map((id, i) => [id, 'MBON', mCounts[i], mCounts[i] * 6.25, Number(mV[i].toFixed(6)), null]),
+      [aplNode.bodyId, 'APL', null, null, null, Number(apl.toFixed(6))],
+    ],
+    spikes: spikeEvents, analog: { APL: aplSamples },
+    anatomyOnly: anatomicalDan.map(node => [node.bodyId, 'DAN']),
+  } : null;
   const total = counts.reduce((a, b) => a + b, 0);
-  if (!total) throw new Error('No Kenyon activity for this stimulus');
+  if (!total) {
+    const error = new Error('No Kenyon activity for this stimulus');
+    if (recordNeurons) error.neural = neural;
+    throw error;
+  }
   const features = Array.from(counts, x => x / Math.max(1 / n, total / n));
   // Smooth readout integrates the same measured KC activity over real KC→MBON edges.
   // This modeled rate decoder avoids coarse spike-count quantization at the two output cells.
@@ -120,7 +150,8 @@ export function decideBrain(brain, context = {}, options = {}) {
   const action = random(brain) < p0 ? 0 : 1;
   brain.decisions++;
   trace.hotIds = kc.map((node, i) => [node.bodyId, counts[i]]).sort((a, b) => b[1] - a[1]).slice(0, 32).filter(x => x[1] > 0).map(x => x[0]);
-  return { action, probability: [p0, 1 - p0], features, trace, activeKCs: counts.filter(x => x > 0).length, simulatedMs: 160 };
+  return { action, probability: [p0, 1 - p0], features, trace, activeKCs: counts.filter(x => x > 0).length, simulatedMs: 160,
+    ...(recordNeurons ? { neural } : {}) };
 }
 
 export function reinforceBrain(brain, decision, reward) {

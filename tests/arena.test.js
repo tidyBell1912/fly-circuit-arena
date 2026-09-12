@@ -1,3 +1,4 @@
+// Legacy Sugar Heist pure-model regression tests; production uses doudizhu-arena.js.
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';

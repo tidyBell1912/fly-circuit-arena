@@ -1,35 +1,39 @@
 # Operation and free-tier budget
 
-The deployment uses one Worker with static assets, one SQLite Durable Object, alarms, a five-minute recovery Cron and WebSocket Hibernation. No external inference API, database subscription or dataset credential is required at runtime.
+Current deployment: five-player Dou Dizhu, `ddz-five-v1`. One Worker serves static assets and a single SQLite Durable Object. Alarms keep the game advancing without viewers; a five-minute Cron is the recovery watchdog. No external inference service or dataset credential is required.
 
-## Progress and verification
+## Progress and integrity
 
-`GET /api/health` returns the arena creation time, revision, current deadline, model version and completed-round count. A healthy response is `ok:true`, with revisions and round counts increasing. With no viewers, alarms continue advancing. A five-minute Cron repairs a missing alarm or overdue phase.
+`/api/health` reports the namespace, model, creation time, current season/round/hand, deadline, confirmed plays and completed hands. One authoritative state commit precedes broadcast. Reconnecting viewers converge to the same revision; brief differences caused by network latency are normal.
 
-Inspect a recorded match at `/api/matches/<id>` and compare `predictionLockedAt < choicesLockedAt < revealedAt < completedAt`. Sum scores and verify one winner after five rounds. Round IDs identify outcomes across reconnects. A page opened at a different time should converge to the same current revision; a small network delivery delay is normal.
+`/api/matches/:id` returns the recorded legal plays, teams and zero-sum transfers of a retained hand. `/api/seasons/:id` preserves round scores, closing balances, debts and the champion. The named old Sugar Heist object is explicitly retired on upgrade: its alarm is removed, its stored data is retained, and it does not continue an obsolete game in the background.
 
-`npm test` covers graph integrity, checkpoint reproduction, separate learning states, private-choice isolation, deadline handling, real SQLite rollback on injected failure, duplicate settlement, two WebSocket viewers, cross-origin rejection, read-only messages and forced hibernation. Test-only routes and clock injection exist only in an in-memory test bundle and are never deployed.
+Tests use real Miniflare/workerd SQLite storage for transaction rollback, duplicate alarms, five-player persistence, two-viewer agreement, read-only sockets, source isolation and complete season transitions. Test injection routes exist only in a generated test bundle and are not deployed.
 
-## Storage retention
+## Bounded storage and diagnostics
 
-Detailed round rows are retained for approximately 14 days. Detailed match replays retain the latest 1,001 matches (about two days at the nominal schedule). Lifetime aggregate counters and current learned state persist. Older replay URLs return 404 after expiry. Export research records before they expire; this demonstration does not promise a permanent archive.
+Only the current state is written on an ordinary move. Its next alarm is written in the same transaction. Plays are already inside that persistent checkpoint; they are not duplicated into a per-play SQL table. A completed hand is archived separately. The latest 1,001 completed hands and 100 completed seasons are retained. Round summaries are bounded to three per season. Earlier detailed records expire; lifetime aggregates and current learning state persist.
 
-At nominal timing there are 480 matches and 2,400 rounds per day. Match JSON is approximately 14 KB. Bounded replay retention prevents indefinite storage growth. State writes occur per phase, not per animation frame or viewer heartbeat.
+Five `lastNeural` records preserve only each player's most recent 160 ms neural decision. They contain actual spikes and model state, not continuously generated activity during the 3-second viewing interval. Full HTTP and initial WebSocket snapshots provide all five; subsequent broadcasts use `neuralMode:delta` with only changed player records. The frontend merges these until the arena creation identity changes. Full `snapshot` messages resynchronize a client.
 
-## Capacity
+Neural diagnostics do not enter every archived play. SQLite-backed Durable Object values permit up to 2 MB for a key/value pair; tests measure actual checkpoint size with the five diagnostics included. See [platform limits](https://developers.cloudflare.com/durable-objects/platform/limits/).
 
-The room caps concurrent WebSocket viewers at 500. This is a protective ceiling, not a measured concurrency guarantee. Static files bypass Worker execution. Browser heartbeats use the platform auto-response feature; outgoing updates do not require a request from every viewer.
+## Free-tier budget
 
-Cloudflare Free quotas, as checked 2026-09-12, include 100,000 Worker requests/day, 100,000 Durable Object requests/day, 13,000 GB-s/day, 5 million SQL rows read/day and 100,000 rows written/day. Index operations and reconnects count. A heavily shared launch can exceed the free allowance. Check the dashboard before increasing traffic; this project does not enable a paid plan.
+Cloudflare Free quotas checked on 2026-09-12 include 100,000 Worker requests/day, 100,000 Durable Object requests/day, 13,000 GB-s/day, 5 million SQLite rows read/day and 100,000 rows written/day. Free-tier allowances are finite and shared with other workloads on the account. No paid plan has been enabled for this project.
 
-Sources: https://developers.cloudflare.com/durable-objects/platform/pricing/ and https://developers.cloudflare.com/workers/platform/limits/.
+A 3-second minimum transition interval has an upper bound of 28,800 ordinary transitions/day. One checkpoint-key write plus one alarm write is approximately 57,600 row writes/day, before hand/season archive writes and expiry deletion. Actual scheduling includes longer dealing, bombs, settlement, credit and season phases. Avoid introducing a second per-move database log or periodic writes for every viewer.
 
-## Updating safely
+The room has a 500-WebSocket protective cap; this is not a measured load guarantee. Static assets bypass Worker execution. Platform WebSocket auto-responses handle heartbeats without waking application code. Broadcast data, CPU, reconnects, read queries and other account projects still matter. Widespread sharing may exceed the free allowance; consult the dashboard before claiming unlimited capacity.
 
-Frontend fixes may deploy without resetting the arena. A change to the graph, sensory mapping, learning parameters or random-number behavior requires a new `MODEL.version` and a new named Durable Object (currently `main-v1`) to keep one experiment internally consistent. Do not silently apply new parameters to old learned state.
+Sources: [Durable Objects pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/), [Workers limits](https://developers.cloudflare.com/workers/platform/limits/), [Durable Objects limits](https://developers.cloudflare.com/durable-objects/platform/limits/).
 
-Wrangler credentials are kept outside this repository, encrypted with a key in macOS Keychain. Do not publish browser cookies, neuPrint account tokens, `.wrangler`, `.env`, or raw private user context. Public data queries currently need no token.
+## Deployment changes
 
-## A 24-hour check
+Frontend-only fixes can deploy while the table continues. Changes to graph, encoding, actual decision parameters, randomness or financial rules require a new model version and arena namespace. Observation-only diagnostics were checked to leave decisions, random state and learned gains unchanged.
 
-Record `/api/health` at launch and after at least 24 hours. Download recent matches and inspect timestamps for missing or duplicate rounds, scheduling gaps and count progression. A short successful smoke test is not a 24-hour stability result. The website's elapsed age does not by itself prove uninterrupted operation.
+Wrangler and GitHub credentials stay outside the repository. Never publish cookies, `.wrangler`, `.env`, neuPrint account tokens or private account context. Public extraction requires no login token.
+
+## Long-duration checks
+
+Use `scripts/audit-doudizhu.js` for this game. The old `audit-live.js` remains explicitly a historical Sugar Heist checker. Start from a fresh actual production baseline after the new game is deployed. A short smoke test, a collection of successful offline simulations or the age of an arena does not establish 24-hour availability. Only report checks that actually completed.

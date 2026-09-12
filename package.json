@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Three connectome-derived fly circuits in one shared live arena",
+  "description": "Five connectome-derived fly circuit models play globally synchronized partnership Dou Dizhu",
   "scripts": {
     "dev": "vite --host 127.0.0.1",
     "build": "vite build",

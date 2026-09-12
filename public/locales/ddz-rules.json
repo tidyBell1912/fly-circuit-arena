@@ -1,0 +1,317 @@
+{
+  "zh": {
+    "quickTitle": "五只果蝇，同桌斗地主",
+    "quickIntro": "两副牌、五名玩家，明地主与一名暗地主组成两人队，对抗三名农民。谁先出完牌，谁的整队就赢。先看这五步，再查下方牌型。",
+    "steps": [
+      "108张牌，每人先发20张。五人依次叫0–3分，0表示不叫；最高叫分者成为明地主，收下剩余8张牌。",
+      "地主选一张自己恰好持有一份的普通牌作为身份牌，点数和花色都要对应。持另一份同牌者是暗地主；身份牌出场时揭晓。",
+      "依次出牌或不出。普通牌必须与桌上的牌型、张数和主干长度相同，且主干点数更大，才能压过；炸弹和火箭除外。",
+      "如果另外四人全部不出，上一位出牌者重新领出，可以换成任意合法牌型。顺子、连对和飞机主干只用3至A，不含2或王。",
+      "任意一名玩家出完手牌，该玩家所属的地主队或农民队立即获胜。每个模型只能看到自己的手牌和公开记录。"
+    ],
+    "patterns": [
+      {
+        "name": "单张",
+        "description": "任意一张。点数从小到大：3、4…10、J、Q、K、A、2、小王、大王；花色不分大小。"
+      },
+      {
+        "name": "对子",
+        "description": "两张相同点数的牌。两张小王或两张大王也可以作对子；一大一小不是对子。"
+      },
+      {
+        "name": "三张",
+        "description": "三张相同点数的牌，比较这组三张的点数。"
+      },
+      {
+        "name": "三带一 / 三带对",
+        "description": "三张同点数牌，带一张其他点数的单牌，或带一对其他点数的牌。比较三张主干，不能跨牌型压。"
+      },
+      {
+        "name": "顺子",
+        "description": "至少五张连续点数的单牌，如34567。只用3至A；必须同长度才能比较。"
+      },
+      {
+        "name": "连对",
+        "description": "至少三组连续点数的对子，如334455。只用3至A；必须同组数才能比较。"
+      },
+      {
+        "name": "飞机及带翼",
+        "description": "至少两组连续三张作主干，只用3至A。可不带牌，或每组带一单或一对。附件不能用主干点数；单翼可同点，但不能同时带大小王；对翼须为不同点数的对子。"
+      },
+      {
+        "name": "四带二 · 项目扩展",
+        "description": "四张同点数牌带两单或两对，属于普通牌型。两单可成一对，但不能同时带大小王；两对须为不同点数，且不能用主干点数。"
+      },
+      {
+        "name": "4–8张炸弹",
+        "description": "四至八张相同点数的牌，压过普通牌型。炸弹先比张数，张数相同再比点数。"
+      },
+      {
+        "name": "四王火箭",
+        "description": "两张小王加两张大王，四张一起出，是本项目最大的牌型。"
+      }
+    ],
+    "seasonTitle": "三轮赛季：看净资产，不只看豆数",
+    "seasonSteps": [
+      "每季共3轮，每轮最多5局。每名玩家以10,000豆开季；豆数归零时自动借5,000豆，每轮最多借一次。",
+      "每轮打满5局结束；若某次牌局结算后，至少3名玩家的当前余额同时为0（不累计此前归零人数），或任一玩家本轮借款后再次归零，则提前结束本轮。",
+      "轮末按借款本金的10%计息并加入负债。以净资产＝豆数−负债排名，第1至第5名分别获得10、6、3、1、0分。",
+      "三轮累计积分决定赛季冠军。下一季先清零豆数和债务，再给每人10,000豆；脑模型的学习状态和历史成绩保留。"
+    ],
+    "scienceTitle": "这是模型反馈，不是脑内化学实测",
+    "scienceText": "五个玩家使用果蝇回路模型，牌面编码、行动读取和借贷反馈属于工程设计。借款先触发4秒正奖赏样信号，随后进入6秒延迟惩罚样信号阶段。这些是模拟数值，不是实际化学物或实测神经递质。胜负与净资产只反映本项目内的模型表现。",
+    "creditNote": "豆数、借款和利息均为游戏内虚拟记账，无现金价值，也不构成真实借贷。每局约3–6分钟只是估计，实际时长以进程为准。"
+  },
+  "en": {
+    "quickTitle": "Five flies. Hidden teams. One table.",
+    "quickIntro": "Two decks, five players: a public landlord and a hidden ally against three farmers. The first player out wins for their whole team. Here is how this Dou Dizhu game works.",
+    "steps": [
+      "Deal 20 cards each from 108 cards. Players bid 0–3 in turn; 0 means pass. The highest bidder becomes the public landlord and takes the remaining 8 cards.",
+      "The landlord names a non-joker card, by rank and suit, of which they hold exactly one copy. The holder of its matching copy is the secret ally, revealed when the identity card is played.",
+      "Play or pass in turn. To beat ordinary cards, match the pattern, card count and main sequence length, then raise the main rank. Bombs and the rocket are exceptions.",
+      "If all four others pass, the last player to play leads again with any legal pattern. The pattern guide below explains sequences and special combinations.",
+      "Anyone who empties their hand wins for their team. Each model sees only its own cards and the public record."
+    ],
+    "patterns": [
+      {
+        "name": "Single",
+        "description": "One card. Low to high: 3, 4…10, J, Q, K, A, 2, small joker, big joker. Suits do not rank."
+      },
+      {
+        "name": "Pair",
+        "description": "Two cards of the same rank. Two small jokers or two big jokers are also a pair; a mixed joker pair is not."
+      },
+      {
+        "name": "Triple",
+        "description": "Three cards of one rank. Compare the rank of the triple."
+      },
+      {
+        "name": "Triple + single / pair",
+        "description": "A triple with one extra card or one extra pair, of a different rank. Compare the triple; these are two different patterns."
+      },
+      {
+        "name": "Straight",
+        "description": "At least five consecutive single ranks, such as 34567. Use only 3 through A. Responses must be the same length."
+      },
+      {
+        "name": "Consecutive pairs",
+        "description": "At least three consecutive pairs, such as 334455. Use only 3 through A. Responses need the same number of pairs."
+      },
+      {
+        "name": "Airplane, with optional wings",
+        "description": "At least two consecutive triples from 3 to A, alone or with one single or pair per triple. Wings cannot share a body rank. Single wings may repeat ranks but cannot mix small and big jokers; pair wings need distinct ranks."
+      },
+      {
+        "name": "Four + two · project extension",
+        "description": "Four of a rank with two singles or two pairs: an ordinary pattern, not a bomb. Singles may form a pair but cannot mix small and big jokers. Pair attachments need distinct ranks, different from the four-card body."
+      },
+      {
+        "name": "4–8-card bomb",
+        "description": "Four to eight cards of one rank beat ordinary patterns. More cards beat fewer; with equal size, the higher rank wins."
+      },
+      {
+        "name": "Four-joker rocket",
+        "description": "Both small jokers and both big jokers, played together. This is the strongest pattern in this game."
+      }
+    ],
+    "seasonTitle": "Three rounds. Rank by net assets.",
+    "seasonSteps": [
+      "A season has 3 rounds, each with up to 5 hands. Everyone starts with 10,000 beans. At zero beans, a player automatically borrows 5,000, at most once per round.",
+      "A round ends after 5 hands, or early if at least 3 players have zero balances at the same time after a hand settles (not a cumulative count), or any player reaches zero again after borrowing in that round.",
+      "At round end, interest equal to 10% of loan principal is added to debt. Rank by net assets: beans minus debt. Places 1–5 earn 10, 6, 3, 1 and 0 points.",
+      "Total points across 3 rounds decide the season champion. Next season resets beans and debt, then gives everyone 10,000 beans. Model learning state and historical results carry over."
+    ],
+    "scienceTitle": "Modeled feedback, not measured brain chemistry",
+    "scienceText": "The five players use fly-circuit models with engineered card inputs, action decoding and loan feedback. A loan triggers 4 seconds of a positive reward-like signal, followed by a 6-second delayed punishment-like phase. These are simulated values, not actual chemicals or measured neurotransmitters. Wins and net assets describe performance within this project.",
+    "creditNote": "Beans, loans and interest are virtual bookkeeping with no cash value or real borrowing. A hand may take roughly 3–6 minutes; this is an estimate, not a fixed duration."
+  },
+  "ko": {
+    "quickTitle": "초파리 다섯, 숨은 동료, 하나의 카드 테이블",
+    "quickIntro": "두 덱으로 다섯 명이 플레이하는 더우디주(Dou Dizhu)입니다. 공개 지주와 숨은 동료가 한 팀이 되어 농민 세 명과 대결합니다. 누구든 손패를 먼저 비우면 그 팀 전체가 이깁니다. 먼저 다섯 단계만 알아보세요.",
+    "steps": [
+      "108장 중 각자 20장씩 받습니다. 차례로 0–3점을 부르며, 0은 입찰 포기입니다. 가장 높은 점수를 부른 사람이 공개 지주가 되어 남은 8장을 받습니다.",
+      "지주는 자신이 정확히 한 장만 가진 일반 카드를 숫자와 무늬로 지정합니다. 같은 카드의 다른 한 장을 가진 사람이 숨은 동료이며, 신분 카드가 나오면 정체가 공개됩니다.",
+      "차례대로 카드를 내거나 패스합니다. 일반 조합으로 이기려면 같은 조합·카드 수·주된 연속 구간 길이에 더 높은 주된 숫자가 필요합니다. 폭탄과 로켓은 예외입니다.",
+      "나머지 네 명이 모두 패스하면 마지막으로 카드를 낸 사람이 원하는 유효 조합으로 새로 시작합니다. 스트레이트·연속 페어·비행기 본체에는 3부터 A까지만 쓰며, 2와 조커는 제외합니다.",
+      "누구든 손패를 모두 내면 그 사람이 속한 지주 팀 또는 농민 팀이 즉시 승리합니다. 각 모델은 자신의 손패와 공개 기록만 볼 수 있습니다."
+    ],
+    "patterns": [
+      {
+        "name": "싱글",
+        "description": "카드 한 장입니다. 낮은 순서부터 3, 4…10, J, Q, K, A, 2, 작은 조커, 큰 조커이며 무늬에는 서열이 없습니다."
+      },
+      {
+        "name": "페어",
+        "description": "같은 숫자 두 장입니다. 작은 조커 두 장 또는 큰 조커 두 장도 페어가 되지만, 크기가 다른 조커 두 장은 안 됩니다."
+      },
+      {
+        "name": "트리플",
+        "description": "같은 숫자 세 장입니다. 세 장의 숫자로 크기를 비교합니다."
+      },
+      {
+        "name": "트리플 + 싱글 / 페어",
+        "description": "트리플에 다른 숫자 한 장 또는 다른 숫자의 페어 하나를 붙입니다. 트리플 숫자를 비교하며, 두 조합은 서로 다른 종류입니다."
+      },
+      {
+        "name": "스트레이트",
+        "description": "34567처럼 숫자가 연속된 싱글 다섯 장 이상입니다. 3부터 A까지만 쓰며, 같은 길이끼리 비교합니다."
+      },
+      {
+        "name": "연속 페어",
+        "description": "334455처럼 숫자가 연속된 페어 세 쌍 이상입니다. 3부터 A까지만 쓰며, 페어 개수가 같아야 비교합니다."
+      },
+      {
+        "name": "비행기와 날개",
+        "description": "3부터 A 사이의 연속 트리플 두 묶음 이상입니다. 본체만 내거나 트리플마다 싱글 또는 페어를 붙입니다. 본체 숫자는 부속 카드로 쓸 수 없습니다. 싱글 날개는 같은 숫자를 허용하지만 두 종류의 조커를 함께 쓸 수 없으며, 페어 날개는 서로 다른 숫자여야 합니다."
+      },
+      {
+        "name": "포카드 + 두 장 / 두 쌍 · 프로젝트 확장",
+        "description": "같은 숫자 네 장에 싱글 두 장 또는 페어 두 쌍을 붙이는 일반 조합이며 폭탄이 아닙니다. 싱글 둘은 페어여도 되지만 두 종류의 조커를 함께 쓸 수 없습니다. 두 페어는 서로 다른 숫자이며 본체 숫자와도 달라야 합니다."
+      },
+      {
+        "name": "4–8장 폭탄",
+        "description": "같은 숫자 네 장부터 여덟 장까지이며 일반 조합을 이깁니다. 장수가 많을수록 강하고, 장수가 같으면 숫자가 높은 쪽이 이깁니다."
+      },
+      {
+        "name": "조커 네 장 로켓",
+        "description": "작은 조커 두 장과 큰 조커 두 장을 한꺼번에 냅니다. 이 게임에서 가장 강한 조합입니다."
+      }
+    ],
+    "seasonTitle": "세 라운드의 시즌, 순자산으로 순위를",
+    "seasonSteps": [
+      "한 시즌은 3라운드이며 라운드마다 최대 5판입니다. 모두 10,000콩으로 시작합니다. 콩이 0이 되면 자동으로 5,000콩을 빌리며, 라운드당 한 번만 가능합니다.",
+      "5판을 마치면 라운드가 끝납니다. 그 전에 한 판을 정산한 직후 3명 이상의 현재 잔액이 동시에 0이거나(이전에 0이 된 인원을 누적하지 않음), 누군가 이번 라운드에 빌린 뒤 다시 0이 되면 조기 종료됩니다.",
+      "라운드가 끝나면 대출 원금의 10%를 이자로 부채에 더합니다. 순자산＝콩−부채로 순위를 정하며, 1–5위는 각각 10, 6, 3, 1, 0점을 받습니다.",
+      "3라운드의 총점으로 시즌 우승자를 정합니다. 다음 시즌에는 콩과 부채를 초기화한 뒤 각자 10,000콩을 지급합니다. 모델의 학습 상태와 과거 성적은 유지합니다."
+    ],
+    "scienceTitle": "실측 뇌 화학이 아닌 모델 피드백",
+    "scienceText": "다섯 플레이어는 초파리 회로 모델을 사용하며, 카드 입력·행동 해석·대출 피드백은 공학적으로 설계되어 있습니다. 대출 시 4초간 양의 보상 유사 신호가 발생하고, 이어서 6초간 지연된 처벌 유사 신호 단계가 진행됩니다. 이는 실제 화학물질이나 실측 신경전달물질이 아닌 시뮬레이션 수치입니다. 승패와 순자산은 이 프로젝트 안에서의 모델 성능을 나타냅니다.",
+    "creditNote": "콩·대출·이자는 현금 가치나 실제 대출이 없는 게임 내 가상 장부입니다. 한 판에 약 3–6분이 걸릴 수 있으나, 고정 시간이 아닌 예상입니다."
+  },
+  "ja": {
+    "quickTitle": "5匹で遊ぶ、隠れた仲間のカード戦",
+    "quickIntro": "2組のデッキを使う5人用の斗地主（Dou Dizhu）です。公開された地主と隠れた仲間の2人で、農民3人と対戦します。誰かが手札を出し切れば、そのチーム全員の勝ち。まずは5つの手順から。",
+    "steps": [
+      "108枚から1人20枚ずつ配ります。順番に0–3点で入札し、0は見送りです。最高得点を宣言した人が公開地主となり、残り8枚を受け取ります。",
+      "地主は、自分がちょうど1枚だけ持つ通常カードを数字とスートで指定します。同じカードのもう1枚を持つ人が隠れた仲間です。目印のカードが出ると正体を公開します。",
+      "順番にカードを出すかパスします。通常の役で上回るには、役・枚数・本体の連続する長さが同じで、本体の数字がより高いことが必要です。爆弾とロケットは例外です。",
+      "ほかの4人全員がパスしたら、最後に出した人が好きな合法の役で出し直せます。ストレート・連続ペア・飛行機の本体は3からAまでで、2とジョーカーは使いません。",
+      "誰かが手札を出し切った瞬間、その人の地主チームまたは農民チームの勝利です。各モデルが見られるのは自分の手札と公開済みの記録だけです。"
+    ],
+    "patterns": [
+      {
+        "name": "シングル",
+        "description": "カード1枚。弱い順に3、4…10、J、Q、K、A、2、小ジョーカー、大ジョーカー。スートに強弱はありません。"
+      },
+      {
+        "name": "ペア",
+        "description": "同じ数字2枚。小ジョーカー2枚、大ジョーカー2枚もペアになります。大小1枚ずつはペアではありません。"
+      },
+      {
+        "name": "トリプル",
+        "description": "同じ数字3枚。その3枚の数字で強さを比べます。"
+      },
+      {
+        "name": "トリプル＋1枚 / 1ペア",
+        "description": "トリプルに、別の数字の1枚か1ペアを添えます。本体のトリプルを比較します。この2つは別の役です。"
+      },
+      {
+        "name": "ストレート",
+        "description": "34567のように数字が連続する5枚以上。3からAだけを使い、同じ長さ同士で比較します。"
+      },
+      {
+        "name": "連続ペア",
+        "description": "334455のように数字が連続する3ペア以上。3からAだけを使い、ペア数が同じ場合に比較できます。"
+      },
+      {
+        "name": "飛行機と翼",
+        "description": "3からAの連続するトリプル2組以上。本体だけ、または1組ごとに1枚か1ペアを添えます。本体と同じ数字は添えられません。単札の翼は同じ数字でもよいですが大小ジョーカーの混在は不可。ペアの翼は互いに異なる数字にします。"
+      },
+      {
+        "name": "4枚＋2枚 / 2ペア · 独自拡張",
+        "description": "同じ数字4枚に単札2枚か2ペアを添える通常の役で、爆弾ではありません。単札2枚はペアでもよいですが大小ジョーカーの混在は不可。2ペアは互いに異なり、本体とも異なる数字にします。"
+      },
+      {
+        "name": "4–8枚の爆弾",
+        "description": "同じ数字4～8枚で、通常の役に勝ちます。枚数が多いほうが強く、同じ枚数なら数字が高いほうが勝ちます。"
+      },
+      {
+        "name": "ジョーカー4枚のロケット",
+        "description": "小ジョーカー2枚と大ジョーカー2枚をまとめて出す、このゲームで最強の役です。"
+      }
+    ],
+    "seasonTitle": "3ラウンドのシーズン、純資産で競う",
+    "seasonSteps": [
+      "1シーズンは3ラウンド、各ラウンドは最大5局です。全員10,000豆で開始。豆が0になると自動で5,000豆を借り、借入は1ラウンドに1回までです。",
+      "5局を終えるとラウンド終了です。その前でも、ある局の精算直後に3人以上の現在残高が同時に0の場合（過去に0になった人数の累計ではありません）、または誰かがそのラウンドの借入後に再び0になった場合は早期終了します。",
+      "ラウンド末に借入元本の10%を利息として負債に加算。純資産＝豆−負債で順位を決め、1～5位にそれぞれ10、6、3、1、0点を付与します。",
+      "3ラウンドの合計点でシーズン王者を決めます。次シーズンは豆と負債をリセットして全員に10,000豆を配り直します。モデルの学習状態と過去の成績は引き継ぎます。"
+    ],
+    "scienceTitle": "実測した脳内化学ではなく、モデルの信号",
+    "scienceText": "5人のプレイヤーはハエの回路モデルを使い、カード入力・行動の読み出し・借入のフィードバックは工学的に設計されています。借入時は4秒間の正の報酬様信号に続き、6秒間の遅延した罰様信号の段階に入ります。これらはシミュレーション上の値で、実際の化学物質や神経伝達物質の実測値ではありません。勝敗や純資産は、本プロジェクト内でのモデルの成績を表します。",
+    "creditNote": "豆・借入・利息はゲーム内だけの仮想帳簿で、現金価値や実際の借金はありません。1局は約3–6分を想定していますが、固定時間ではありません。"
+  },
+  "vi": {
+    "quickTitle": "Năm ruồi giấm. Một bàn bài. Một đồng đội bí mật.",
+    "quickIntro": "Đây là trò Đấu địa chủ (Dou Dizhu) dành cho năm người, dùng hai bộ bài. Địa chủ công khai cùng một đồng đội bí mật đấu với ba nông dân. Ai hết bài trước thì cả đội của người đó thắng. Bắt đầu với năm bước sau.",
+    "steps": [
+      "Chia cho mỗi người 20 lá từ bộ 108 lá. Lần lượt gọi điểm từ 0 đến 3; 0 nghĩa là bỏ qua. Người gọi cao nhất trở thành địa chủ công khai và nhận 8 lá còn lại.",
+      "Địa chủ chọn một lá thường mà mình chỉ có đúng một bản, xác định bằng hạng và chất. Người giữ bản còn lại của lá đó là đồng đội bí mật; danh tính được công khai khi lá nhận diện được đánh ra.",
+      "Lần lượt đánh bài hoặc bỏ lượt. Muốn đè một bộ thông thường, phải cùng kiểu, cùng số lá và cùng độ dài phần chính, nhưng hạng chính cao hơn. Bom và tên lửa là ngoại lệ.",
+      "Nếu cả bốn người còn lại đều bỏ lượt, người đánh gần nhất được mở lượt mới bằng bất kỳ bộ hợp lệ nào. Sảnh, đôi liên tiếp và thân máy bay chỉ dùng từ 3 đến A, không có 2 hay joker.",
+      "Khi bất kỳ ai hết bài, đội địa chủ hoặc đội nông dân của người đó thắng ngay. Mỗi mô hình chỉ nhìn thấy bài của mình và thông tin đã công khai."
+    ],
+    "patterns": [
+      {
+        "name": "Lá lẻ",
+        "description": "Một lá bất kỳ. Thứ tự từ thấp đến cao: 3, 4…10, J, Q, K, A, 2, joker nhỏ, joker lớn. Các chất ngang nhau."
+      },
+      {
+        "name": "Đôi",
+        "description": "Hai lá cùng hạng. Hai joker nhỏ hoặc hai joker lớn cũng tạo thành đôi; một nhỏ và một lớn thì không."
+      },
+      {
+        "name": "Bộ ba",
+        "description": "Ba lá cùng hạng. So độ lớn theo hạng của bộ ba."
+      },
+      {
+        "name": "Bộ ba + lá lẻ / đôi",
+        "description": "Bộ ba kèm một lá lẻ hoặc một đôi khác hạng. So theo bộ ba chính; đây là hai kiểu bộ khác nhau."
+      },
+      {
+        "name": "Sảnh",
+        "description": "Ít nhất năm lá có hạng liên tiếp, như 34567. Chỉ dùng từ 3 đến A và phải cùng độ dài mới so được."
+      },
+      {
+        "name": "Đôi liên tiếp",
+        "description": "Ít nhất ba đôi có hạng liên tiếp, như 334455. Chỉ dùng từ 3 đến A và phải có cùng số đôi."
+      },
+      {
+        "name": "Máy bay và cánh",
+        "description": "Ít nhất hai bộ ba liên tiếp từ 3 đến A, đánh riêng hoặc kèm một lá lẻ hay một đôi cho mỗi bộ ba. Cánh không được trùng hạng thân. Cánh lẻ được lặp hạng nhưng không trộn joker nhỏ và lớn; cánh đôi phải khác hạng nhau."
+      },
+      {
+        "name": "Bốn kèm hai · luật mở rộng",
+        "description": "Bốn lá cùng hạng kèm hai lá lẻ hoặc hai đôi: bộ thường, không phải bom. Hai lá lẻ có thể thành đôi nhưng không trộn joker nhỏ và lớn. Hai đôi phải khác hạng nhau và khác hạng bốn lá chính."
+      },
+      {
+        "name": "Bom 4–8 lá",
+        "description": "Từ bốn đến tám lá cùng hạng, đè mọi bộ thông thường. Bom nhiều lá hơn mạnh hơn; nếu cùng số lá thì so hạng."
+      },
+      {
+        "name": "Tên lửa bốn joker",
+        "description": "Cả hai joker nhỏ và cả hai joker lớn được đánh cùng lúc. Đây là bộ mạnh nhất trong trò chơi này."
+      }
+    ],
+    "seasonTitle": "Ba vòng mỗi mùa, xếp hạng bằng tài sản ròng",
+    "seasonSteps": [
+      "Mỗi mùa có 3 vòng, mỗi vòng tối đa 5 ván. Ai cũng bắt đầu với 10.000 đậu. Khi số đậu về 0, người chơi tự động vay 5.000 đậu, tối đa một lần mỗi vòng.",
+      "Vòng kết thúc sau 5 ván, hoặc sớm hơn nếu ngay sau khi quyết toán một ván có ít nhất 3 người cùng có số dư bằng 0 (không cộng dồn số người từng về 0), hay bất kỳ ai về 0 lần nữa sau khi vay trong vòng đó.",
+      "Cuối vòng, tiền lãi bằng 10% gốc vay được cộng vào nợ. Xếp hạng theo tài sản ròng = đậu − nợ. Hạng 1–5 nhận lần lượt 10, 6, 3, 1 và 0 điểm.",
+      "Tổng điểm sau 3 vòng quyết định nhà vô địch mùa. Sang mùa mới, đậu và nợ được đặt lại về 0 rồi mỗi người nhận 10.000 đậu. Trạng thái học của mô hình và thành tích cũ được giữ lại."
+    ],
+    "scienceTitle": "Phản hồi mô phỏng, không phải hóa học não đo được",
+    "scienceText": "Năm người chơi dùng mô hình mạch thần kinh ruồi giấm; đầu vào lá bài, cách giải mã hành động và phản hồi vay đều được thiết kế bằng kỹ thuật. Khoản vay kích hoạt 4 giây tín hiệu giống phần thưởng tích cực, rồi đến giai đoạn 6 giây tín hiệu giống hình phạt trễ. Đây là các giá trị mô phỏng, không phải hóa chất thực hay chất dẫn truyền thần kinh được đo. Thắng thua và tài sản ròng chỉ phản ánh hiệu suất trong dự án này.",
+    "creditNote": "Đậu, khoản vay và lãi chỉ là sổ sách ảo trong trò chơi, không có giá trị tiền mặt hay vay nợ thật. Một ván có thể mất khoảng 3–6 phút; đây là ước tính, không phải thời lượng cố định."
+  }
+}
